@@ -13,7 +13,7 @@
     "react": "16.9.0",
     "react-native": "0.61.5",
     "react-native-fs": "^2.16.2",
-    "rn-update-apk": "https://github.com/mikehardy/react-native-update-apk.git"
+    "rn-update-apk": "https://github.com/dengquan/react-native-update-apk.git"
   },
   "devDependencies": {
     "@babel/core": "^7.7.5",

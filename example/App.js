@@ -19,7 +19,7 @@ import {
 import * as UpdateAPK from "rn-update-apk";
 
 type Props = {};
-export default class App extends Component<Props> {
+export default class App extends Component<Props> {  
   constructor(props) {
     super(props);
     this.state = {
@@ -31,11 +31,11 @@ export default class App extends Component<Props> {
 
     updater = new UpdateAPK.UpdateAPK({
 
-      // iOS must use App Store and this is the app ID. This is a sample: "All Birds of Ecuador" (¡Qué lindo!)
-      iosAppId: "1104809018", 
+      // iOS must use App Store and this is the app ID. This is a sample: "weichat"
+      iosAppId: "414478124", 
 
       apkVersionUrl:
-        "https://raw.githubusercontent.com/mikehardy/react-native-update-apk/master/example/test-version.json",
+        "https://raw.githubusercontent.com/dengquan/react-native-update-apk/master/example/test-version.json",
 
       // The name of this 'fileProviderAuthority' is defined in AndroidManifest.xml. THEY MUST MATCH.
       // By default other modules like rn-fetch-blob define one (conveniently named the same as below)
@@ -113,10 +113,10 @@ export default class App extends Component<Props> {
     // This will fail if they don't have Google Play Services installed though.
     // You can optionally force the patch on Android 5+ with boolean param 1
     // You can also optionally display a Google dialog for user repair (if possible) with boolean param 2
-    UpdateAPK.patchSSLProvider() 
+    UpdateAPK.patchSSLProvider()
       .then(ret => {
 
-        // This means 
+        // This means
         console.log("SSL Provider Patch proceeded without error");
       })
       .catch(rej => {

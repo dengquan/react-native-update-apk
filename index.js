@@ -15,6 +15,7 @@ export class UpdateAPK {
     fetch(url)
       .then(response => response.json())
       .then(json => {
+        console.log(json)
         success && success(json);
       })
       .catch(err => {
@@ -138,10 +139,10 @@ export class UpdateAPK {
       console.log("RNUpdateAPK::getAppStoreVersion - iosAppId doesn't exist.");
       return;
     }
-    const URL =
-      "https://itunes.apple.com/us/app/apple-store/id" +
-      this.options.iosAppId +
-      "?mt=8";
+    const URL = "https://itunes.apple.com/cn/lookup?id=" + this.options.iosAppId
+      // "https://itunes.apple.com/cn/app/apple-store/id" +
+      // this.options.iosAppId +
+      // "?mt=8";
     console.log("RNUpdateAPK::getAppStoreVersion - attempting to fetch " + URL);
     this.GET(
       URL,
