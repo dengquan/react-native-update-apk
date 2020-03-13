@@ -31,6 +31,7 @@ export class UpdateAPK {
       console.log("RNUpdateAPK::getApkVersion - apkVersionUrl doesn't exist.");
       return;
     }
+    console.log(this.options.apkVersionUrl);
     this.GET(
       this.options.apkVersionUrl,
       this.getApkVersionSuccess.bind(this),
@@ -61,7 +62,7 @@ export class UpdateAPK {
           if (isUpdate) {
             this.downloadApk(remote);
           }
-        });
+        }, remote);
       }
     } else if (this.options.notNeedUpdateApp) {
       this.options.notNeedUpdateApp();
@@ -165,8 +166,16 @@ export class UpdateAPK {
           if (isUpdate) {
             RNUpdateAPK.installFromAppStore(trackViewUrl);
           }
-        });
+        }, result.trackViewUrl);
       }
+    }
+  };
+  
+  downloadApp = remote => {
+    if (Platform.OS === "android") {
+      this.downloadApk(remote);
+    } else {
+      RNUpdateAPK.installFromAppStore(remote);
     }
   };
 
