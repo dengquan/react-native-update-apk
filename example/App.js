@@ -32,7 +32,8 @@ export default class App extends Component<Props> {
     updater = new UpdateAPK.UpdateAPK({
 
       // iOS must use App Store and this is the app ID. This is a sample: "weichat"
-      iosAppId: "414478124", 
+      // iosAppId: "414478124", 
+      // move iosAppId to test-version.json
 
       apkVersionUrl:
         "https://raw.githubusercontent.com/dengquan/react-native-update-apk/master/example/test-version.json",

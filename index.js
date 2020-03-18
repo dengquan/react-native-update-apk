@@ -135,15 +135,28 @@ export class UpdateAPK {
       });
   };
 
+  getIosAppIdSuccess = remote => {
+      if (remote.iosAppId) {
+          this.options.iosAppId = remote.iosAppId;
+      }
+      if (!this.options.iosAppId) {
+        console.log("RNUpdateAPK::getAppStoreVersion - iosAppId doesn't exist.");
+        return;
+      }
+      this.getAppStoreVersion();
+  };
+  
+  getIosAppId = () => {
+    console.log("RNUpdateAPK::getIosAppId");
+    this.GET(
+      this.options.apkVersionUrl,
+      this.getIosAppIdSuccess.bind(this),
+      this.getVersionError.bind(this)
+    );
+  }
+  
   getAppStoreVersion = () => {
-    if (!this.options.iosAppId) {
-      console.log("RNUpdateAPK::getAppStoreVersion - iosAppId doesn't exist.");
-      return;
-    }
     const URL = "https://itunes.apple.com/cn/lookup?id=" + this.options.iosAppId
-      // "https://itunes.apple.com/cn/app/apple-store/id" +
-      // this.options.iosAppId +
-      // "?mt=8";
     console.log("RNUpdateAPK::getAppStoreVersion - attempting to fetch " + URL);
     this.GET(
       URL,
@@ -193,7 +206,7 @@ export class UpdateAPK {
     if (Platform.OS === "android") {
       this.getApkVersion();
     } else {
-      this.getAppStoreVersion();
+      this.getIosAppId();
     }
   };
 }
